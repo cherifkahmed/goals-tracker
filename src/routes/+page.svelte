@@ -1,5 +1,6 @@
 <script lang="ts">
 	import goals from '$lib/goals.json';
+	let goal_description = $state(0);
 </script>
 
 <div class="grid-container">
@@ -8,18 +9,26 @@
 	<h1>updates</h1>
 	{#each goals as goal, i (goal.id)}
 		<div>
-			<li>{i + 1} {goal.name}</li>
+			<button onclick={()=> goal_description = i}>{goal.name}</button>
+			
 		</div>
 
 		<div>
-			<li>{goal.works}</li>
+			<button onclick={()=> goal_description = i}>{goal.works}</button>
 		</div>
 
 		<div>
-			<li>{goal.updates}</li>
+			<button onclick={()=> goal_description = i}>{goal.updates}</button>
 		</div>
 	{/each}
 </div>
+
+
+{#each goals as goal, i (goal.id)}
+    {#if i === goal_description}
+    	<div>{goal.name}</div>
+    {/if}
+{/each}
 
 <style>
 	.grid-container {
